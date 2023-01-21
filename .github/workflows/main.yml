@@ -48,7 +48,28 @@ jobs:
           cp FlexDemo\FlexDemo.vpx tmp
           cp -r Scripts tmp/Scripts
 
+      #- uses: actions/upload-artifact@v2
+      #  with: 
+      #    name: FlexDMD
+      #    path: tmp
+          
       - uses: actions/upload-artifact@v2
         with: 
           name: FlexDMD
-          path: tmp
+          path: FlexDMD
+          
+      - uses: actions/upload-artifact@v2
+        with: 
+          name: FlexDMDUI
+          path: FlexDMDUI
+          
+      - uses: actions/upload-artifact@v2
+        with: 
+          name: FlexDemo
+          path: FlexDemo
+          
+      - uses: actions/upload-artifact@v2
+        with: 
+          name: All
+          path: $GITHUB_WORKSPACE  
+          
