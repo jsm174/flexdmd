@@ -36,7 +36,11 @@ jobs:
         run: nuget restore FlexDMD.sln
   
       - name: Build
-        run: MSBuild.exe $Env:GITHUB_WORKSPACE/FlexDMD.sln /p:Configuration="ReleaseCI"
+        run: |
+           MSBuild.exe $Env:GITHUB_WORKSPACE/FlexDMD.sln /p:Configuration="ReleaseCI"
+           cd FlexDMD
+           tlbexp.exe bin\ReleaseCI\ILMerge\FlexDMD.dll
+        
 
       - name: Package
         run: |
@@ -47,6 +51,7 @@ jobs:
           cp FlexDMD.log.config tmp
           cp FlexDemo\FlexDemo.vpx tmp
           cp -r Scripts tmp/Scripts
+          
 
       #- uses: actions/upload-artifact@v2
       #  with: 
